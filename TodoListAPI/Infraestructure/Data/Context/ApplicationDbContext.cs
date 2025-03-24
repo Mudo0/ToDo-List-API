@@ -24,6 +24,8 @@ namespace Infraestructure.Data.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            
         }
     }
 }
