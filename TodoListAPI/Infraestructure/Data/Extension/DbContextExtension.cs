@@ -17,6 +17,7 @@ namespace Infraestructure.Data.Extension
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             {
+                //
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                     c => c.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
             });
