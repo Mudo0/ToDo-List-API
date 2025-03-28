@@ -23,6 +23,10 @@ namespace SharedKernel
 
         public ErrorType Type { get; }
 
+        //converts an error to a result
+        //we can return an error in a method that returns a result
+        public static implicit operator Result(Error error) => Result.Failure(error);
+
         //ctor
         public Error(string code, string description, ErrorType type)
         {

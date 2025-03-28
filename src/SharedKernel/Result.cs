@@ -5,10 +5,16 @@ namespace SharedKernel
     //result pattern
     public class Result
     {
+        public bool IsSuccess { get; }
+
+        public bool IsFailure => !IsSuccess;
+
+        public Error Error { get; }
+
         //ctor
         public Result(bool isSuccess, Error error)
         {
-            //invalidates incongruency
+            //invalidates false positives
             if (isSuccess && error != Error.None ||
                 !isSuccess && error == Error.None)
             {
@@ -19,13 +25,11 @@ namespace SharedKernel
             Error = error;
         }
 
-        public bool IsSuccess { get; }
-
-        public bool IsFailure => !IsSuccess;
-
-        public Error Error { get; }
-
         //factory methods that creates the results
+        public static Result Create() => new(false, Error.NullValue);
+
+        public static Result<TValue> Create<TValue>(TValue value) => new(value, false, Error.NullValue);
+
         public static Result Success() => new(true, Error.None);
 
         public static Result<TValue> Success<TValue>(TValue value) =>
