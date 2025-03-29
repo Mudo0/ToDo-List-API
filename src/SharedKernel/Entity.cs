@@ -26,6 +26,6 @@ namespace SharedKernel
         { }
 
         //method that adds an event to the list
-        protected void Raise(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
+        public void Raise(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
     }
 }

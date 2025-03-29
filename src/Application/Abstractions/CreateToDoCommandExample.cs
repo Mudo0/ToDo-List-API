@@ -9,6 +9,7 @@ namespace Application.Abstractions
 {
     public class CreateToDoCommandExample
     {
+        //todo borrar
         public Result<string> CreateToDo(string mail)
         {
             Result.Create(mail)

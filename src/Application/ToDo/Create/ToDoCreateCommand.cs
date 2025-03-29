@@ -3,6 +3,6 @@ using Domain.DTOs;
 
 namespace Application.ToDo.Create;
 
-public sealed record ToDoCreateCommand(ToDoDto dto) : ICommand
+public sealed record ToDoCreateCommand(ToDoDto Dto) : ICommand<Guid>
 {
 }

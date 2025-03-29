@@ -1,12 +1,15 @@
-﻿namespace Application.Abstractions;
+﻿using MediatR;
+using SharedKernel;
+
+namespace Application.Abstractions;
 
 //action that does not return a value
-public interface ICommand : IBaseCommand
+public interface ICommand : IRequest<Result>, IBaseCommand
 {
 }
 
 //action that does return a value
-public interface ICommand<T> : IBaseCommand
+public interface ICommand<TResponse> : IRequest<Result<TResponse>>, IBaseCommand
 {
 }
 

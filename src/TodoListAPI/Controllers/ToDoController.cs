@@ -1,11 +1,12 @@
 ﻿using Application.Abstractions;
 using Application.ToDo.Create;
 using Domain.DTOs;
-using Domain.Entities;
+
 using Infraestructure.Data.Context;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SharedKernel;
 using TodoListAPI.Abstractions;
 
 namespace TodoListAPI.Controllers
@@ -38,7 +39,7 @@ namespace TodoListAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<ToDo>>> Create([FromBody] ToDoDto dto,
+        public async Task<ActionResult<Result>> Create([FromBody] ToDoDto dto,
             CancellationToken cancellationToken)
         {
             //creamos el comando
@@ -46,14 +47,9 @@ namespace TodoListAPI.Controllers
 
             //lo enviamos para que lo maneje el handler
 
-            await _sender.Send(command, cancellationToken);
+            var result = await Sender.Send(command, cancellationToken);
 
-            //////////////////// forma de testeo con dbcontext
-            var entity = dto.Convert(dto);
-            _context.ToDos.Add(entity);
-            var result = await _context.SaveChangesAsync();
-            if (result != 1) { return StatusCode(500, "Error"); }
-            return Ok(result);
+            return result.IsSuccess ? Ok(result) : StatusCode(500, result.Error);
         }
 
         [HttpDelete]

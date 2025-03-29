@@ -9,11 +9,9 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAllAsync();
+        Task<bool> LoginAsync(Guid id);
 
-        Task<User> GetByIdAsync(int id);
-
-        Task<bool> CreateAsync(User user);
+        Task<bool> RegisterAsync(User user);
 
         Task<bool> UpdateAsync(User user);
 

@@ -1,10 +1,5 @@
-﻿using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.DTOs;
+﻿using Domain.DTOs;
+using SharedKernel;
 
 namespace Domain.Interfaces.Repositories
 {
@@ -12,12 +7,12 @@ namespace Domain.Interfaces.Repositories
     {
         Task<IEnumerable<ToDoDto>> GetAllAsync();
 
-        Task<ToDo> GetByIdAsync(int id);
+        Task<ToDoDto> GetByIdAsync(Guid id);
 
         Task<bool> UpdateAsync(ToDoDto item);
 
-        Task<bool> CreateAsync(ToDoDto item);
+        Task<Result<Guid>> CreateAsync(ToDoDto dto, CancellationToken cancellationToken);
 
-        Task<bool> DeleteAsync(int id);
+        Task<bool> DeleteAsync(Guid id);
     }
 }

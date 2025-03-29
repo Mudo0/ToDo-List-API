@@ -1,9 +1,4 @@
 ﻿using SharedKernel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Errors
 {
@@ -14,5 +9,8 @@ namespace Domain.Errors
 
         public static Error NotInserted() =>
             new("Item.Not.Inserted", "The item could not be inserted", ErrorType.Conflict);
+
+        public static Error NotDeleted() =>
+            new("Item.Not.Deleted", "The item was not deleted", ErrorType.Failure);
     }
 }
