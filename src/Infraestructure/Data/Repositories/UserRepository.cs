@@ -1,11 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Infraestructure.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infraestructure.Data.Repositories
 {
@@ -18,27 +13,22 @@ namespace Infraestructure.Data.Repositories
             _context = context;
         }
 
-        public Task<bool> CreateAsync(User user)
+        public Task<bool> LoginAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<User>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<User> GetByIdAsync(int id)
+        public Task<bool> RegisterAsync(User user)
         {
             throw new NotImplementedException();
         }
 
         public Task<bool> UpdateAsync(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }

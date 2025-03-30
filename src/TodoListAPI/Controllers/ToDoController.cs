@@ -39,17 +39,19 @@ namespace TodoListAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Result>> Create([FromBody] ToDoDto dto,
+        public async Task<IActionResult> Create([FromBody] ToDoDto dto,
             CancellationToken cancellationToken)
         {
             //creamos el comando
             var command = new ToDoCreateCommand(dto);
 
             //lo enviamos para que lo maneje el handler
-
             var result = await Sender.Send(command, cancellationToken);
 
-            return result.IsSuccess ? Ok(result) : StatusCode(500, result.Error);
+            return result.IsSuccess ? Ok(result) : StatusCode(
+                    CustomEndpointError.GetStatusCode(result.Error.Type),
+            //custom detailed result error
+                CustomEndpointError.Problem(result));
         }
 
         [HttpDelete]

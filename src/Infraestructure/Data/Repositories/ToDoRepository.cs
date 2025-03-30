@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.DTOs;
+using SharedKernel;
 
 namespace Infraestructure.Data.Repositories
 {
@@ -19,27 +21,28 @@ namespace Infraestructure.Data.Repositories
             _context = context;
         }
 
-        public Task<bool> CreateAsync(ToDo item)
+
+        public Task<IEnumerable<ToDoDto>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public Task<ToDoDto> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<ToDo>> GetAllAsync()
+        public Task<bool> UpdateAsync(ToDoDto item)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ToDo> GetByIdAsync(int id)
+        public Task<Result<Guid>> CreateAsync(ToDoDto dto, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(ToDo item)
+        public Task<bool> DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
