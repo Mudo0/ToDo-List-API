@@ -9,9 +9,9 @@ namespace Infraestructure.Repositories
 {
     public class ToDoRepository : IToDoRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IApplicationDbContext _context;
 
-        public ToDoRepository(ApplicationDbContext context)
+        public ToDoRepository(IApplicationDbContext context)
         {
             _context = context;
         }
@@ -33,11 +33,10 @@ namespace Infraestructure.Repositories
 
         public async Task<Result<Guid>> CreateAsync(ToDoDto dto, CancellationToken cancellationToken)
         {
-            var result = Result.Create();
-            var toDo = dto.Convert(dto);
+            var toDo = dto.Convert();
 
-            toDo.Raise(new ItemCreatedEvent(toDo.Id));
             _context.ToDos.Add(toDo);
+            toDo.Raise(new ItemCreatedEvent(toDo.Id));
             await _context.SaveChangesAsync(cancellationToken);
             //todo agregar failure path
             return Result.Success(toDo.Id);

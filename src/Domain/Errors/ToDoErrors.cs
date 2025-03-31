@@ -2,7 +2,7 @@
 
 namespace Domain.Errors
 {
-    public static class ItemErrors
+    public static class ToDoErrors
     {
         public static Error NotFound(Guid itemId) =>
             new("Item.NotFound", $"The item: ID({itemId}) was not found", ErrorType.NotFound);

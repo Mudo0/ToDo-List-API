@@ -13,19 +13,17 @@ using System.Threading.Tasks;
 namespace Infraestructure.Data.Context
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : DbContext(options)
+        : DbContext(options), IApplicationDbContext
     {
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<ToDoProgress> ToDoProgresses { get; set; }
         public DbSet<User> Users { get; set; }
-
+         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-            
         }
     }
 }

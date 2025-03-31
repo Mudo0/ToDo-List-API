@@ -17,8 +17,7 @@ namespace Application.ToDo.Create
         //method to decide what and how to do with the command
         public async Task<Result<Guid>> Handle(ToDoCreateCommand request, CancellationToken cancellationToken)
         {
-            var itemToCreate = request.Dto;
-            var result = await _repository.CreateAsync(itemToCreate, cancellationToken);
+            var result = await _repository.CreateAsync(request.Dto, cancellationToken);
             //todo agregar failure path
             return Result.Success(result.Value);
         }

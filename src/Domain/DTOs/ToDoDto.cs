@@ -8,13 +8,12 @@ using SharedKernel;
 
 namespace Domain.DTOs
 {
-    public class ToDoDto
+    public class ToDoDto : Entity
     {
         public string Title { get; set; }
         public string Content { get; set; }
         public int Progress { get; set; }
         public Guid UserId { get; set; }
-        private IDateTimeProvider dateTimeProvider;
 
         public ToDoDto(string title, string content, int progress, Guid userId)
         {
@@ -24,16 +23,18 @@ namespace Domain.DTOs
             UserId = userId;
         }
 
-        public ToDo Convert(ToDoDto dto)
+        public ToDo Convert()
         {
             var entity = new ToDo
             {
-                Title = dto.Title,
-                Content = dto.Content,
+                Id = Id,
+                Title = Title,
+                Content = Content,
                 IsCompleted = false,
+                //todo corregir
                 CreatedAt = dateTimeProvider.UtcNow,
-                ProgressId = dto.Progress,
-                UserId = dto.UserId
+                ProgressId = Progress,
+                UserId = UserId
             };
             return entity;
         }
