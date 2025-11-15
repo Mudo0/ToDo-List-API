@@ -10,7 +10,7 @@ namespace Domain.Entities
     {
         Completed,
         InProgress,
-        Pending
-
+        Pending,
+        Cancelled
     }
 }

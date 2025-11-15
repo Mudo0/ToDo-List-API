@@ -19,6 +19,8 @@ namespace Domain.Interfaces
 
         Task<TodoItem> UpdateAsync(TodoItem entity);
 
+        Task<TodoItem> ChangeStatusAsync(Guid id, TodoStatus status);
+
         Task<bool> DeleteAsync(Guid id);
     }
 }
