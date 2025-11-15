@@ -1,26 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Entities;
+﻿using Domain.Entities;
 
 namespace Domain.Interfaces
 {
     public interface ITodoRepository
     {
+        /// <summary>
+        /// Busca una Tarea por su ID.
+        /// </summary>
         Task<TodoItem?> GetByIdAsync(Guid id);
 
+        /// <summary>
+        /// Obtiene todas las tareas de un usuario específico.
+        /// </summary>
         Task<IEnumerable<TodoItem>> GetByUserIdAsync(Guid id);
 
+        /// <summary>
+        /// Obtiene todas las tareas
+        /// </summary>
         Task<IEnumerable<TodoItem>> GetAllAsync();
 
-        Task<TodoItem> CreateAsync(TodoItem entity);
+        /// <summary>
+        /// Agrega una nueva Tarea al DbContext (no la guarda).
+        /// </summary>
+        Task CreateAsync(TodoItem entity);
 
-        Task<TodoItem> UpdateAsync(TodoItem entity);
+        /// <summary>
+        /// Marca una Tarea como modificada en el DbContext (no la guarda).
+        /// </summary>
+        void UpdateAsync(TodoItem entity);
 
-        Task<TodoItem> ChangeStatusAsync(Guid id, TodoStatus status);
-
-        Task<bool> DeleteAsync(Guid id);
+        /// <summary>
+        /// Marca una Tarea como eliminada en el DbContext (no la guarda).
+        /// </summary>
+        void DeleteAsync(TodoItem entity);
     }
 }

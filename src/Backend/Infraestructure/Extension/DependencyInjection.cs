@@ -1,4 +1,6 @@
-﻿using Infraestructure.Persistence;
+﻿using Domain.Interfaces;
+using Infraestructure.Persistence;
+using Infraestructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +44,9 @@ namespace Infraestructure.Extension
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(connectionString));
             }
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITodoRepository, TodoRepository>();
 
             // Devolvemos 'services' para que Program.cs pueda seguir
             // registrando otras cosas (ej: .AddApplication())
