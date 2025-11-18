@@ -1,19 +1,21 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Infraestructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructure.Repositories
 {
     public class UserRepository(ApplicationDbContext context) : IUserRepository
     {
-        public async Task CreateAsync(User user)
+        public async Task CreateAsync(User user, CancellationToken cancellationToken)
         {
-            await context.Users.AddAsync(user);
+            await context.Users.AddAsync(user, cancellationToken);
         }
 
-        public async Task<User?> GetByIdAsync(Guid id)
+        public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            return await context.Users.FindAsync(id);
+            return await context.Users.FirstOrDefaultAsync(
+                user => user.Id == id, cancellationToken);
         }
     }
 }

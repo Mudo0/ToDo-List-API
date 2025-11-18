@@ -7,22 +7,22 @@ namespace Domain.Interfaces
         /// <summary>
         /// Busca una Tarea por su ID.
         /// </summary>
-        Task<TodoItem?> GetByIdAsync(Guid id);
+        Task<TodoItem?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Obtiene todas las tareas de un usuario específico.
         /// </summary>
-        Task<IEnumerable<TodoItem>> GetByUserIdAsync(Guid id);
+        Task<IEnumerable<TodoItem>> GetByUserIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Obtiene todas las tareas
         /// </summary>
-        Task<IEnumerable<TodoItem>> GetAllAsync();
+        Task<IEnumerable<TodoItem>> GetAllAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Agrega una nueva Tarea al DbContext (no la guarda).
         /// </summary>
-        Task CreateAsync(TodoItem entity);
+        Task CreateAsync(TodoItem entity, CancellationToken cancellationToken);
 
         /// <summary>
         /// Marca una Tarea como modificada en el DbContext (no la guarda).
