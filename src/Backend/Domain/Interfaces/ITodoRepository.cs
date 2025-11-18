@@ -22,7 +22,7 @@ namespace Domain.Interfaces
         /// <summary>
         /// Agrega una nueva Tarea al DbContext (no la guarda).
         /// </summary>
-        Task CreateAsync(TodoItem entity, CancellationToken cancellationToken);
+        Task AddAsync(TodoItem entity, CancellationToken cancellationToken);
 
         /// <summary>
         /// Marca una Tarea como modificada en el DbContext (no la guarda).

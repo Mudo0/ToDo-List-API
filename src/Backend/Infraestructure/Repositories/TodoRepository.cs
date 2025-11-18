@@ -26,7 +26,7 @@ namespace Infraestructure.Repositories
             return await context.TodoItems.ToListAsync(cancellationToken);
         }
 
-        public async Task CreateAsync(TodoItem entity, CancellationToken cancellationToken)
+        public async Task AddAsync(TodoItem entity, CancellationToken cancellationToken)
         {
             await context.TodoItems.AddAsync(entity, cancellationToken);
         }

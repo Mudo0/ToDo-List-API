@@ -7,7 +7,7 @@ namespace Domain.Interfaces
         /// <summary>
         /// Agrega un nuevo usuario a la base de datos.
         /// </summary>
-        Task CreateAsync(User user, CancellationToken cancellationToken);
+        Task AddAsync(User user, CancellationToken cancellationToken);
 
         /// <summary>
         /// Encuentra el usuario por su id

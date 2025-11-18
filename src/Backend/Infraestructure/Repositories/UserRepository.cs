@@ -7,7 +7,7 @@ namespace Infraestructure.Repositories
 {
     public class UserRepository(ApplicationDbContext context) : IUserRepository
     {
-        public async Task CreateAsync(User user, CancellationToken cancellationToken)
+        public async Task AddAsync(User user, CancellationToken cancellationToken)
         {
             await context.Users.AddAsync(user, cancellationToken);
         }
