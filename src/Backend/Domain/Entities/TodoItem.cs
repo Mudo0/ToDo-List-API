@@ -4,7 +4,7 @@ using Error = ErrorOr.Error;
 namespace Domain.Entities
 {
     /// <summary>
-    /// Representa una tarea (To-Do) en el sistema.
+    /// Entidad del dominio que representa una tarea (To-Do) en el sistema.
     /// Contiene toda la lógica de negocio para validar y modificar su propio estado.
     /// </summary>
     public class TodoItem
