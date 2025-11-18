@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.Common.DTOs
+﻿namespace Application.Common.DTOs
 {
-    public class UserDto
-    {
-        public Guid Id { get; set; }
-    }
+    /// <summary>
+    /// DTO para transportar datos de un usuario.
+    /// </summary>
+    /// <param name="Id">Identificador del usuario</param>
+    public record UserDto(Guid Id);
 }
