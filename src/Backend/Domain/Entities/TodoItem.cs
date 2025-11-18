@@ -1,4 +1,5 @@
-﻿using ErrorOr;
+﻿using Domain.Errors;
+using ErrorOr;
 using Error = ErrorOr.Error;
 
 namespace Domain.Entities
@@ -89,14 +90,12 @@ namespace Domain.Entities
             List<Error> errors = [];
             if (string.IsNullOrWhiteSpace(title))
             {
-                errors.Add(Error.Validation("TodoItem.Title",
-                    "The title cannot be empty"));
+                errors.Add(DomainErrors.TodoItem.TitleEmptyOrWhiteSpace());
             }
 
             if (title.Length > 100)
             {
-                errors.Add(Error.Validation("TodoItem.Title",
-                    "The title cannot be over 100 characters."));
+                errors.Add(DomainErrors.TodoItem.TitleTooLong());
             }
 
             return errors;
@@ -110,8 +109,7 @@ namespace Domain.Entities
             List<Error> errors = [];
             if (userId == Guid.Empty)
             {
-                errors.Add(Error.Validation("TodoItem.InvalidUser",
-                    "The user id is not valid or empty"));
+                errors.Add(DomainErrors.TodoItem.InvalidUserId());
             }
             return errors;
         }
@@ -124,8 +122,7 @@ namespace Domain.Entities
             List<Error> errors = [];
             if (limitDate.HasValue && limitDate.Value < DateTime.UtcNow)
             {
-                errors.Add(Error.Validation("TodoItem.LimitDate",
-                    "The date cannot be previous from today"));
+                errors.Add(DomainErrors.TodoItem.InvalidDate());
             }
 
             return errors;
@@ -144,9 +141,7 @@ namespace Domain.Entities
         {
             if (Status == TodoStatus.Cancelled)
             {
-                return Error.Conflict(
-                    code: "TodoItem.Cancelled",
-                    description: "A cancelled task cannot be completed");
+                return DomainErrors.TodoItem.CompleteACancelledTask();
             }
 
             Status = TodoStatus.Completed;
@@ -164,8 +159,7 @@ namespace Domain.Entities
         {
             if (Status == TodoStatus.Cancelled)
             {
-                return Error.Conflict("TodoItem.Status",
-                    "A cancelled task cannot be in progress");
+                return DomainErrors.TodoItem.StartProgressACancelledTask();
             }
             Status = TodoStatus.InProgress;
             return Result.Success;
@@ -182,8 +176,7 @@ namespace Domain.Entities
         {
             if (Status == TodoStatus.Completed)
             {
-                return Error.Conflict("TodoItem.Status",
-                    "A completed task cannot be cancelled");
+                return DomainErrors.TodoItem.CancelACompleteTask();
             }
             Status = TodoStatus.Cancelled;
             return Result.Success;
