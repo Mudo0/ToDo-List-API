@@ -1,7 +1,7 @@
 ﻿namespace Domain.Errors
 {
     /// <summary>
-    /// Clase estática para definir y acceder a los errores del dominio.
+    /// Clase estática parcial para definir y acceder a los errores del dominio.
     /// </summary>
     public static partial class DomainErrors
     {

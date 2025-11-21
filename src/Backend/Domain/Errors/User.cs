@@ -18,6 +18,11 @@ namespace Domain.Errors
                 Error.NotFound(
                     code: "User.NotFound",
                     description: "The user was not found.");
+
+            public static Error SaveFailure()
+                => Error.Failure(
+                    code: "User.SaveFailure",
+                    description: "An error occurred while saving the user.");
         }
     }
 }
