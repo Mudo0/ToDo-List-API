@@ -1,7 +1,7 @@
 ﻿using Application.Common.Abstractions.CQRS;
 using Application.Common.DTOs;
 
-namespace Application.Users.Commands.CreateAnonymousUser
+namespace Application.Features.Users.Commands.CreateAnonymousUser
 {
     /// <summary>
     /// Comando para crear un usuario anónimo.

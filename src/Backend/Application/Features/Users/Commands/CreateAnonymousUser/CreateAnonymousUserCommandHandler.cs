@@ -7,7 +7,7 @@ using Domain.Interfaces;
 using ErrorOr;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Users.Commands.CreateAnonymousUser
+namespace Application.Features.Users.Commands.CreateAnonymousUser
 {
     /// <summary>
     /// Manejador para el comando CreateAnonymousUserCommand.
